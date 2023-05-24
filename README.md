@@ -3,8 +3,8 @@ A weekly data project aimed at the R ecosystem. As this project was borne out of
 
 **Visualization Examples**
 
-[Tornado Size by Decade] (https://github.com/Seanmgard/TidyTuesday/tree/main/Week%2020)
+[Tornado Size by Decade](https://github.com/Seanmgard/TidyTuesday/tree/main/Week%2020)
 ![Tornado_Size](https://github.com/Seanmgard/TidyTuesday/assets/52292931/f9125aa7-b03e-43a5-930d-6a80212b0859)
 
-[Where In Central Park Can Squirrels Be Found...] (https://github.com/Seanmgard/TidyTuesday/tree/main/Week%2021)
+[Where In Central Park Can Squirrels Be Found...](https://github.com/Seanmgard/TidyTuesday/tree/main/Week%2021)
 ![Squirrel_Map](https://github.com/Seanmgard/TidyTuesday/assets/52292931/0f0976a4-874f-47a2-b25d-c3b455f90f22)
