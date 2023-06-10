@@ -8,3 +8,6 @@ A weekly data project aimed at the R ecosystem. As this project was borne out of
 
 ### **[Where In Central Park Can Squirrels Be Found...](https://github.com/Seanmgard/TidyTuesday/tree/main/Week%2021)**
 ![Squirrel_Map](https://github.com/Seanmgard/TidyTuesday/assets/52292931/0f0976a4-874f-47a2-b25d-c3b455f90f22)
+
+### **[Clean Energy: Tracking Per Capita Energy Consumption Across The World](https://github.com/Seanmgard/TidyTuesday/tree/main/Week%2023)**
+![image](https://github.com/Seanmgard/TidyTuesday/assets/52292931/649a4153-badb-49b3-94c9-677ac6f3c05f)
