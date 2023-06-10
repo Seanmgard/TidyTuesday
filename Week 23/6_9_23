@@ -1,0 +1,96 @@
+library(tidytuesdayR)
+library(tidyverse)
+library(showtext)
+library(ggplot2)
+library(dplyr)
+library(formattable)
+library(webshot)
+
+#Import data
+
+owid_energy <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-06-06/owid-energy.csv')
+
+#Filter the dataset to only show most recent year
+Energy <- subset(owid_energy, year == 2021)
+
+#Update the dataset to remove any non-country rows (ex: "G20", "Africa", etc)
+Energy <- subset(Energy, !is.na(iso_code) & iso_code != "")
+
+#Create columns that rank countries based on per capita consumption factors
+Energy <- Energy %>%
+  mutate(
+    biofuel_rank = dense_rank(desc(biofuel_cons_per_capita)),
+    coal_rank = dense_rank(desc(coal_cons_per_capita)),
+    fossil_rank = dense_rank(desc(fossil_energy_per_capita)),
+    gas_rank = dense_rank(desc(fossil_energy_per_capita)),
+    hydro_rank = dense_rank(desc(hydro_energy_per_capita)),
+    lowcarbon_rank = dense_rank(desc(low_carbon_energy_per_capita)),
+    nuclear_rank = dense_rank(desc(nuclear_energy_per_capita)),
+    oil_rank = dense_rank(desc(oil_energy_per_capita)),
+    other_renewables_rank = dense_rank(desc(other_renewables_energy_per_capita)),
+    renewables_rank = dense_rank(desc(renewables_energy_per_capita)),
+    solar_rank = dense_rank(desc(solar_energy_per_capita)),
+    wind_rank = dense_rank(desc(wind_energy_per_capita)),
+  )
+
+#Filter out countries that don't have data to be ranked
+Energy_Filtered <- Energy %>%
+  filter(!is.na(fossil_rank)) %>%
+  select(country, coal_rank, fossil_rank, gas_rank, hydro_rank, lowcarbon_rank, oil_rank, other_renewables_rank, renewables_rank, solar_rank, wind_rank)
+
+#Define Colors and fonts
+Green2 = "#DeF7E9"
+customGreen0 = "#fbfefb"
+customGreen = "#71CA97"
+
+table_attributes <- 'style="font-size: 18px; font-family: Georgia";'
+  
+#Create column that sums clean forms of energy
+Total_Clean_Energy <- c("hydro_rank", "solar_rank", "wind_rank", "renewables_rank", "other_renewables_rank")
+Energy_Filtered$Total_Clean <- rowSums(Energy_Filtered[,Total_Clean_Energy], na.rm = TRUE)
+
+#Create dataset with only top 10 values
+Clean_Energy_Filtered <- Energy_Filtered %>%
+  arrange(Total_Clean) %>%
+  slice_head(n=10)
+
+
+#Only show clean energy columns
+Clean_Energy_Filtered <- select(Clean_Energy_Filtered, 
+                                -coal_rank, 
+                                -fossil_rank, 
+                                -gas_rank,
+                                -lowcarbon_rank,
+                                -oil_rank)
+
+colnames(Clean_Energy_Filtered) <- c(
+  "Country",
+  "Hydropower",
+  "Other Renewables",
+  "Renewables",
+  "Solar",
+  "Wind",
+  "Combined"
+)
+
+#Add Column to show total ranking
+Clean_Energy_Filtered$Rank <- 1:10
+Clean_Energy_Filtered <- Clean_Energy_Filtered %>%
+  select(Rank, everything()) %>%
+  relocate(Rank, .before=3)
+
+#Set as dataframe
+Clean_Energy_Filtered <- data.frame(Clean_Energy_Filtered)
+
+#Create Table
+Clean_Table <- formattable(Clean_Energy_Filtered[, -8], align = c("c", "c", "c", "c", "c", "c"),
+                           list(`Indicator Name` = formatter("span", style = ~ style(color = "grey",font.weight = "bold")), 
+                                `Hydropower`= color_tile(customGreen, customGreen0),
+                                `Other Renewables`= color_tile(customGreen, customGreen0),
+                                `Renewables`= color_tile(customGreen, customGreen0),
+                                `Solar`= color_tile(customGreen, customGreen0),
+                                `Wind`= color_tile(customGreen, customGreen0)
+                           ),
+table.attr = table_attributes)
+
+Clean_Table
