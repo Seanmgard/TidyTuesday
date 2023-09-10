@@ -3,6 +3,9 @@ A weekly data project aimed at the R ecosystem. As this project was borne out of
 
 ## Visualization Examples
 
+### **[Wage Increases by Union and Non-Union Membership](https://github.com/Seanmgard/TidyTuesday/tree/main/Week%2036)**
+![Union_Membership_Chart](https://github.com/Seanmgard/TidyTuesday/assets/52292931/e821c108-4fc5-4a7c-9c9c-24ffe404cb07)
+
 ### **[Tornado Size by Decade](https://github.com/Seanmgard/TidyTuesday/tree/main/Week%2020)**
 ![Tornado_Size](https://github.com/Seanmgard/TidyTuesday/assets/52292931/f9125aa7-b03e-43a5-930d-6a80212b0859)
 
