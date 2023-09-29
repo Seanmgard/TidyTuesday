@@ -3,6 +3,9 @@ A weekly data project aimed at the R ecosystem. As this project was borne out of
 
 ## Visualization Examples
 
+### **[The Roy Kent F*** Index](https://github.com/Seanmgard/TidyTuesday/tree/main/Week%2039)**
+![image](https://github.com/Seanmgard/TidyTuesday/assets/52292931/1ab3ff40-b739-4b93-9366-18fb831ae494)
+
 ### **[Wage Increases by Union and Non-Union Membership](https://github.com/Seanmgard/TidyTuesday/tree/main/Week%2036)**
 ![Union_Membership_Chart](https://github.com/Seanmgard/TidyTuesday/assets/52292931/e821c108-4fc5-4a7c-9c9c-24ffe404cb07)
 
